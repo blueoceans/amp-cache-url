@@ -1,0 +1,14 @@
+box: golang
+build:
+  steps:
+  - setup-go-workspace
+  - script:
+      name: dep
+      code: |
+        go get -u github.com/golang/dep/...
+        dep ensure
+  - wercker/golint
+  - script:
+      name: build
+      code: |
+        make
