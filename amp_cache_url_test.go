@@ -1,4 +1,4 @@
-package amp_cache_url
+package ampCacheURL
 
 import (
 	"testing"
