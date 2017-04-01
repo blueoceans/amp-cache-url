@@ -54,11 +54,13 @@ func getType(u *url.URL) string {
 	return typeMap[ext]
 }
 
+// IsCacheURL returns if provide string is AMP-Cache-URL.
 func IsCacheURL(rawurl string) bool {
 	result, _ := isCacheURL(rawurl)
 	return result
 }
 
+// GetCacheURL returns AMP-Cache-URL of provide URL or error.
 func GetCacheURL(rawurl string) (string, error) {
 	result, u := isCacheURL(rawurl)
 	if result {
@@ -106,6 +108,7 @@ func GetCacheURL(rawurl string) (string, error) {
 	return fmt.Sprintf("https://%s%s/%s%s/%s", subdomain, dotCdnAmpprojectOrg, contentType, scheme, removeScheme), nil
 }
 
+// GetOriginURL returns origin URL of provide AMP-Cache-URL or error.
 func GetOriginURL(rawurl string) (string, error) {
 	result, u := isCacheURL(rawurl)
 	if !result {
