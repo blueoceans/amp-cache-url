@@ -12,3 +12,6 @@ all: $(GO) $(LIB) test
 
 test:
 	go test
+
+clean:
+	rm -f cmd/amp-cache-url/amp-cache-url $(wildcard lib/*.h) $(wildcard lib/*.so)
