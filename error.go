@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-type BadUrlError struct {
-	rawUrl      string
+type BadURLError struct {
+	rawURL      string
 	messageBase string
 }
 
-func (err BadUrlError) Error() string {
-	return fmt.Sprintf(err.messageBase, err.rawUrl)
+func (err BadURLError) Error() string {
+	return fmt.Sprintf(err.messageBase, err.rawURL)
 }
