@@ -12,17 +12,17 @@ func init() {
 func main() {
 }
 
-//export isCacheUrl
-func isCacheUrl(rawurl string) bool {
-	return amp_cache_url.IsCacheUrl(rawurl)
+//export isCacheURL
+func isCacheURL(rawurl string) bool {
+	return ampCacheURL.IsCacheURL(rawurl)
 }
 
-//export getCacheUrl
-func getCacheUrl(rawurl string) (string, error) {
-	return amp_cache_url.GetCacheUrl(rawurl)
+//export getCacheURL
+func getCacheURL(rawurl string) (string, error) {
+	return ampCacheURL.GetCacheURL(rawurl)
 }
 
-//export getOriginUrl
-func getOriginUrl(rawurl string) (string, error) {
-	return amp_cache_url.GetOriginUrl(rawurl)
+//export getOriginURL
+func getOriginURL(rawurl string) (string, error) {
+	return ampCacheURL.GetOriginURL(rawurl)
 }

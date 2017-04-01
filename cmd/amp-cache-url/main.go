@@ -14,10 +14,10 @@ func main() {
 			result string
 			err    error
 		)
-		if amp_cache_url.IsCacheUrl(arg) {
-			result, err = amp_cache_url.GetOriginUrl(arg)
+		if ampCacheURL.IsCacheURL(arg) {
+			result, err = ampCacheURL.GetOriginURL(arg)
 		} else {
-			result, err = amp_cache_url.GetCacheUrl(arg)
+			result, err = ampCacheURL.GetCacheURL(arg)
 		}
 		if err != nil {
 			fmt.Printf("%s\n", err)
