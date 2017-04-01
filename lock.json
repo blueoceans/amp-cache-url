@@ -1,0 +1,13 @@
+{
+    "memo": "",
+    "projects": [
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "1358eff22f0dd0c54fc521042cc607f6ff4b531a",
+            "packages": [
+                "idna"
+            ]
+        }
+    ]
+}
