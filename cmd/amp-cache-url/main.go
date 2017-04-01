@@ -10,18 +10,19 @@ import (
 func main() {
 	flag.Parse()
 	for _, arg := range flag.Args() {
+		var (
+			result string
+			err    error
+		)
 		if amp_cache_url.IsCacheUrl(arg) {
-			if result, err := amp_cache_url.GetOriginUrl(arg); err != nil {
-				fmt.Printf("%s\n", err)
-			} else {
-				fmt.Println(result)
-			}
+			result, err = amp_cache_url.GetOriginUrl(arg)
 		} else {
-			if result, err := amp_cache_url.GetCacheUrl(arg); err != nil {
-				fmt.Printf("%s\n", err)
-			} else {
-				fmt.Println(result)
-			}
+			result, err = amp_cache_url.GetCacheUrl(arg)
 		}
+		if err != nil {
+			fmt.Printf("%s\n", err)
+			continue
+		}
+		fmt.Println(result)
 	}
 }
