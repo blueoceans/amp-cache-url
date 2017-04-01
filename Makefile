@@ -8,6 +8,7 @@ LIB=$(LIBGO:.go=.so)
 
 all: $(GO) $(LIB) test
 	go build
+	cd cmd/amp-cache-url && go build
 
 test:
 	go test
