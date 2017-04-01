@@ -6,7 +6,7 @@ import (
 
 var vtests = []struct {
 	url         string
-	ampCacheUrl string
+	ampCacheURL string
 }{
 	{"http://example.com/",
 		"https://example-com.cdn.ampproject.org/c/example.com/"},
@@ -23,8 +23,8 @@ func TestIsCacheUrl(t *testing.T) {
 		if IsCacheUrl(vt.url) != false {
 			t.Errorf("%q, want `false`", vt.url)
 		}
-		if IsCacheUrl(vt.ampCacheUrl) != true {
-			t.Errorf("%q, want `true`", vt.ampCacheUrl)
+		if IsCacheUrl(vt.ampCacheURL) != true {
+			t.Errorf("%q, want `true`", vt.ampCacheURL)
 		}
 	}
 }
@@ -33,21 +33,21 @@ func TestGetCacheUrl(t *testing.T) {
 	for _, vt := range vtests {
 		if url, err := GetCacheUrl(vt.url); err != nil {
 			t.Errorf("can not get url: %v", err)
-		} else if url != vt.ampCacheUrl {
-			t.Errorf("%q, want %q, got %q", vt.url, vt.ampCacheUrl, url)
+		} else if url != vt.ampCacheURL {
+			t.Errorf("%q, want %q, got %q", vt.url, vt.ampCacheURL, url)
 		}
-		if _, err := GetCacheUrl(vt.ampCacheUrl); err == nil {
-			t.Errorf("%q, want `error`", vt.ampCacheUrl)
+		if _, err := GetCacheUrl(vt.ampCacheURL); err == nil {
+			t.Errorf("%q, want `error`", vt.ampCacheURL)
 		}
 	}
 }
 
 func TestGetOriginUrl(t *testing.T) {
 	for _, vt := range vtests {
-		if url, err := GetOriginUrl(vt.ampCacheUrl); err != nil {
+		if url, err := GetOriginUrl(vt.ampCacheURL); err != nil {
 			t.Errorf("can not get url: %v", err)
 		} else if url != vt.url {
-			t.Errorf("%q, want %q, got %q", vt.ampCacheUrl, vt.url, url)
+			t.Errorf("%q, want %q, got %q", vt.ampCacheURL, vt.url, url)
 		}
 		if _, err := GetOriginUrl(vt.url); err == nil {
 			t.Errorf("%q, want `error`", vt.url)

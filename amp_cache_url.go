@@ -31,7 +31,7 @@ var (
 	}
 )
 
-func isCacheUrl(rawurl string) (bool, *url.URL) {
+func isCacheURL(rawurl string) (bool, *url.URL) {
 	u, err := url.Parse(rawurl)
 	if err != nil {
 		return false, u
@@ -54,17 +54,17 @@ func getType(u *url.URL) string {
 	return typeMap[ext]
 }
 
-func IsCacheUrl(rawurl string) bool {
-	result, _ := isCacheUrl(rawurl)
+func IsCacheURL(rawurl string) bool {
+	result, _ := isCacheURL(rawurl)
 	return result
 }
 
-func GetCacheUrl(rawurl string) (string, error) {
-	result, u := isCacheUrl(rawurl)
+func GetCacheURL(rawurl string) (string, error) {
+	result, u := isCacheURL(rawurl)
 	if result {
-		return "", &BadUrlError{rawurl, "must be not AMP-Cache-URL, got %q"}
+		return "", &BadURLError{rawurl, "must be not AMP-Cache-URL, got %q"}
 	} else if u == nil {
-		return "", &BadUrlError{rawurl, "must be URL, got %q"}
+		return "", &BadURLError{rawurl, "must be URL, got %q"}
 	}
 
 	// https://developers.google.com/amp/cache/overview#amp-cache-url-format
@@ -76,13 +76,13 @@ func GetCacheUrl(rawurl string) (string, error) {
 	case "https":
 		scheme = "/s"
 	default:
-		return "", &BadUrlError{rawurl, "must be HTTP/HTTPS URL, got %q"}
+		return "", &BadURLError{rawurl, "must be HTTP/HTTPS URL, got %q"}
 	}
 
 	// Content type
 	contentType := getType(u)
 	if contentType == "" {
-		return "", &BadUrlError{rawurl, "un supprted MIME-Type, got %q"}
+		return "", &BadURLError{rawurl, "un supprted MIME-Type, got %q"}
 	}
 
 	// Subdomain name
@@ -106,19 +106,19 @@ func GetCacheUrl(rawurl string) (string, error) {
 	return fmt.Sprintf("https://%s%s/%s%s/%s", subdomain, dotCdnAmpprojectOrg, contentType, scheme, removeScheme), nil
 }
 
-func GetOriginUrl(rawurl string) (string, error) {
-	result, u := isCacheUrl(rawurl)
+func GetOriginURL(rawurl string) (string, error) {
+	result, u := isCacheURL(rawurl)
 	if !result {
-		return "", &BadUrlError{rawurl, "must be AMP-Cache-URL, got %q"}
+		return "", &BadURLError{rawurl, "must be AMP-Cache-URL, got %q"}
 	} else if u == nil {
-		return "", &BadUrlError{rawurl, "must be URL, got %q"}
+		return "", &BadURLError{rawurl, "must be URL, got %q"}
 	}
 
 	// https://developers.google.com/amp/cache/overview#amp-cache-url-format
 	// URI
 	uriSplits := strings.SplitN(rawurl, "/", 5)
 	if len(uriSplits) != 5 {
-		return "", &BadUrlError{rawurl, "must be AMP-Cache-URL, got %q"}
+		return "", &BadURLError{rawurl, "must be AMP-Cache-URL, got %q"}
 	}
 	uri := uriSplits[4]
 
