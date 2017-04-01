@@ -2,21 +2,27 @@ package main
 
 import (
 	"C"
-	"log"
 
-	"amp_cache_url"
+	"github.com/blueoceans/amp-cache-url"
 )
-
-//export fib
-func fib(n int) int {
-	if n < 2 {
-		return n
-	}
-	return fib(n-2) + fib(n-1)
-}
 
 func init() {
 }
 
 func main() {
+}
+
+//export isCacheUrl
+func isCacheUrl(rawurl string) bool {
+	return amp_cache_url.IsCacheUrl(rawurl)
+}
+
+//export getCacheUrl
+func getCacheUrl(rawurl string) (string, error) {
+	return amp_cache_url.GetCacheUrl(rawurl)
+}
+
+//export getOriginUrl
+func getOriginUrl(rawurl string) (string, error) {
+	return amp_cache_url.GetOriginUrl(rawurl)
 }
