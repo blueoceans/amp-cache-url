@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	cdnAmpprojectOrg    string = "cdn.ampproject.org"
+	// CdnAmpprojectOrg is CDN of AMP project.
+	CdnAmpprojectOrg    string = "cdn.ampproject.org"
 	dotCdnAmpprojectOrg string = ".cdn.ampproject.org"
 )
 
@@ -38,7 +39,7 @@ func isCacheURL(rawurl string) (bool, *url.URL) {
 	}
 	switch {
 	case
-		u.Host == cdnAmpprojectOrg,
+		u.Host == CdnAmpprojectOrg,
 		strings.HasSuffix(u.Host, dotCdnAmpprojectOrg):
 		return true, u
 	default:
